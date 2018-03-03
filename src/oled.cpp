@@ -79,7 +79,7 @@ void LCD_CLS(void)
 			LCD_WrDat(0);
 	}
 }
-//���һ��0-63
+
 void LCD_CLS_y(char y)
 {
 	uint8_t x;
@@ -94,7 +94,7 @@ void LCD_CLS_y(char y)
 
 }
 
-//���һ���ϵ�һ������y=0-63
+
 void LCD_CLS_line_area(uint8_t start_x,uint8_t start_y,uint8_t width)
 {
 	uint8_t x;
@@ -156,9 +156,8 @@ void LCD_Init(void)
   LCD_WrCmd(0xa4);// Disable Entire Display On (0xa4/0xa5)
   LCD_WrCmd(0xa6);// Disable Inverse Display On (0xa6/a7)
   LCD_WrCmd(0xaf);//--turn on oled panel
-  LCD_Fill(0x00);  //��ʼ����
   LCD_Set_Pos(0,0);
-
+  LCD_CLS();
 }
 void LCD_PutPixel(uint8_t x,uint8_t y)
 {
@@ -246,7 +245,6 @@ void LCD_P8x16Str(uint8_t x,uint8_t y,uint8_t *ch,const uint8_t *F8x16)
   	j++;
   }
 }
-//��������ַ���
 void LCD_P14x16Str(uint8_t x,uint8_t y,uint8_t ch[],const uint8_t *F14x16_Idx,const uint8_t *F14x16)
 {
 	uint8_t wm=0,ii = 0;
@@ -399,6 +397,10 @@ void LCD_Print(uint8_t x, uint8_t y, uint8_t *ch,uint8_t char_size, uint8_t asci
 		}
 	}
 }
+void LCD_Print(uint8_t x, uint8_t y, char* ch)
+{
+	LCD_Print(x, y, (uint8_t*)ch, TYPE6X8, TYPE6X8);
+}
 void Draw_BMP(uint8_t x,uint8_t y,const uint8_t *bmp)
 {
 	uint8_t wm=0;
@@ -415,6 +417,18 @@ void Draw_BMP(uint8_t x,uint8_t y,const uint8_t *bmp)
 	{
 		LCD_WrDat(*(bmp+adder));
 		adder += 1;
+	}
+}
+void LCD_Draw(uint8_t x, uint8_t y, const uint8_t* bmp, uint8_t rows, uint8_t coloms)
+{
+	//rows 行 coloms列
+	LCD_Set_Pos(x, y);
+	for(int i=0;i<rows/8;i++)
+	{
+		for(int j=0;j<coloms;j++)
+			LCD_WrDat(*(bmp++));
+		y+=8;
+		LCD_Set_Pos(x, y);
 	}
 }
 

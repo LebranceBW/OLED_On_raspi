@@ -34,7 +34,6 @@
 								<option id="gnu.cpp.compiler.option.debugging.level.1906592140" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.916022001" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="/home/lebrance/Workspace/raspberry/wiringPi/wiringPi"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/other}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1899460882" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
